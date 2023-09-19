@@ -1,0 +1,12 @@
+.App
+{
+    width: 705px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+}
+
+.Navbar
+{
+    background:#33b8ff;
+    text-align:center;
+}
