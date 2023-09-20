@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import home from "../assets/home-icon.png";
-import "../App.css";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
 
 function Navbar() {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+    
     return (
-        <div className="Navbar" >
-         <Link to="/"><img src={home} /></Link>
-        </div>
+        <nav className={"Navbar " + theme} >
+            <div className={theme}>
+            <Link to="/"><img src={home} /></Link>
+            </div>
+            <button className="theme-btn" onClick={toggleTheme}>
+                {theme === "light" ? "dark " : "light "}
+            </button>
+        </nav>
     );
 }
 

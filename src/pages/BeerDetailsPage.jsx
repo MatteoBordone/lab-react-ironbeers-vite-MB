@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Beer from "../components/Beer";
 
 function BeerDetailsPage() {
-
     const [beer, setBeer] = useState();
 
     let beerId = useParams().beerId;

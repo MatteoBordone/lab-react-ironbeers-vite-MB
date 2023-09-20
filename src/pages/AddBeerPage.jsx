@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
 
 function AddBeerPage() {
     const [message,setMessage] = useState(null);
+    const { theme } = useContext(ThemeContext);
 
     function save(event) {
         event.preventDefault();
@@ -24,27 +27,29 @@ function AddBeerPage() {
         }).catch((error) => {
             setMessage(error.message);
         });
-    };
+    }
 
     return (
+        <div className={theme}>
         <form name="formo" onSubmit={save}>
-            <div><label>Name</label></div>
+            <div>Name</div>
             <div><input name="name" type="text" /></div>
-            <div><label>Tagline</label></div>
+            <div>Tagline</div>
             <div><input name="tagline" type="text" /></div>
-            <div><label>Description</label></div>
+            <div>Description</div>
             <div><textarea name="description" /></div>
-            <div><label>First Brewed</label></div>
+            <div>First Brewed</div>
             <div><input name="first_brewed" type="text" /></div>
-            <div><label>Brewer's Tips</label></div>
+            <div>Brewer's Tips</div>
             <div><input name="brewers_tips" type="text" /></div>
-            <div><label>Attenuation Level</label></div>
+            <div>Attenuation Level</div>
             <div><input name="attenuation_level" type="number" /></div>
-            <div><label>Contributed By</label></div>
+            <div>Contributed By</div>
             <div><input name="contributed_by" type="text" /></div>
             <div><button type="submit">Save</button></div>
             <div>{message}</div>
         </form>
+        </div>
     );
 }
 

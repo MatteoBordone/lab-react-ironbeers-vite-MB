@@ -1,10 +1,13 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
- import {Link } from "react-router-dom";
+import {Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
 
 function AllBeersPage() {
     const [beers, setBeers] = useState([]);
     const [query, setQuery] = useState(null);
+    const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
         var url = "https://ih-beers-api2.herokuapp.com/beers";
@@ -22,14 +25,14 @@ function AllBeersPage() {
 
     function filter(text) {
         setQuery(text);
-    };
+    }
     
     return (
-        <>
+        <div className={theme}>
         Search <input type="text" onChange={() => filter(event.target.value)} />
         {beers.length>0 && beers.map(beer =>
             <div key={beer._id}  className="card">
-                <div className="row align-items-start">
+                <div className={theme}>
                     <div className="col">
                         <img src={beer.image_url} style={{width:"100px"}} />
                     </div>
@@ -38,12 +41,12 @@ function AllBeersPage() {
                             <h2>{beer.name}</h2>
                         </Link>
                         <div className="text-secondary">{beer.tagline}</div>
-                        <span className="small">Created by {beer.contributed_by}</span>
+                        <span className={theme}>Created by {beer.contributed_by}</span>
                     </div>
                 </div>
             </div>
         )}
-        </>
+        </div>
     );
 }
 

@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
+
 export default function Beer({beer}) {
+    const { theme } = useContext(ThemeContext);
+
     return (
-        <div className="card">
+        <div className={theme}>
             <img src={beer.image_url} style={{width:"100px", alignSelf:"center"}} />
             <div className="row align-items-start">
                 <div className="col">
@@ -9,7 +14,7 @@ export default function Beer({beer}) {
                 </div>
                 <div className="col" style={{textAlign: "right"}}>
                     <div className="text-secondary">{beer.attenuation_level}</div>
-                    <span>{beer.first_brewed}</span>
+                    <div className={theme}>{beer.first_brewed}</div>
                 </div>
             </div>
             <p>{beer.description}</p>
